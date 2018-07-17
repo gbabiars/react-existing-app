@@ -37,30 +37,17 @@ const theme = createTheme(
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck
-        transition={['slide']}
-        transitionDuration={500}
-        theme={theme}
-      >
-
+      <Deck transition={['slide']} transitionDuration={500} theme={theme}>
         <Slide>
-          <Heading size={1}>
-            Migrating to React
-          </Heading>
-          <Heading size={5}>
-            Greg Babiars
-          </Heading>
-          <Heading size={5}>
-            @gbabiars
-          </Heading>
+          <Heading size={1}>Migrating to React</Heading>
+          <Heading size={5}>Greg Babiars</Heading>
+          <Heading size={5}>@gbabiars</Heading>
         </Slide>
 
         <Slide>
           <Heading size={4}>
             Background
-            <Text>
-              (~2 years ago)
-            </Text>
+            <Text>(~2 years ago)</Text>
           </Heading>
           <List>
             <ListItem>AngularJS 1.5 App</ListItem>
@@ -73,16 +60,12 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Time to Rewrite?
-          </Heading>
+          <Heading size={4}>Time to Rewrite?</Heading>
           <Image src="rewrite.jpg" alt="Rewrite Image" height={500} />
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Benefits of Migration
-          </Heading>
+          <Heading size={4}>Benefits of Migration</Heading>
           <List>
             <ListItem>Incremental improvement</ListItem>
             <ListItem>Spreads risk over time</ListItem>
@@ -93,9 +76,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Drawbacks of Migration
-          </Heading>
+          <Heading size={4}>Drawbacks of Migration</Heading>
           <List>
             <ListItem>Takes longer overall</ListItem>
             <ListItem>Perf cost of shipping two frameworks</ListItem>
@@ -104,21 +85,15 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            But before we introduce React...
-          </Heading>
+          <Heading size={4}>But before we introduce React...</Heading>
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            ...we need to clean up our architecture
-          </Heading>
+          <Heading size={4}>...we need to clean up our architecture</Heading>
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Bundle with Webpack
-          </Heading>
+          <Heading size={4}>Bundle with Webpack</Heading>
           <List>
             <ListItem>Start with require.context</ListItem>
             <ListItem>Eventually switch to ES modules</ListItem>
@@ -128,9 +103,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Components
-          </Heading>
+          <Heading size={4}>Components</Heading>
           <List>
             <ListItem>Convert controllers to components</ListItem>
             <ListItem>One way data binding</ListItem>
@@ -141,9 +114,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Redux
-          </Heading>
+          <Heading size={4}>Redux</Heading>
           <List>
             <ListItem>Framework agnostic</ListItem>
             <ListItem>Moves fetching logic to store</ListItem>
@@ -153,14 +124,13 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Text>
-            Now that our components are focused on rendering, we can swap out the rendering with some thing like...<S type="bold">React</S>!
+            Now that our components are focused on rendering, we can swap out
+            the rendering with some thing like...<S type="bold">React</S>!
           </Text>
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Strategy
-          </Heading>
+          <Heading size={4}>Strategy</Heading>
           <List>
             <ListItem>Migrate a component at a time</ListItem>
             <ListItem>Start with leaf components first</ListItem>
@@ -172,16 +142,17 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={5}>
-            Example 1: Basic Props
-          </Heading>
+          <Heading size={5}>Example 1: Basic Props</Heading>
           <Text>
-            Use AngularJS's <Code>$onChanges</Code> hook to render the AngularJS component as a React component and pass the bindings as props.
+            Use AngularJS's <Code>$onChanges</Code> hook to render the AngularJS
+            component as a React component and pass the bindings as props.
           </Text>
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const helloWorldComponent = {
               template: \`<h1>Hello {{$ctrl.name}}</h1>\`,
               bindings: {
@@ -190,11 +161,15 @@ export default class Presentation extends React.Component {
             };
 
             // <hello-world name="'John'"></hello-world>
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const HelloWorld = ({ name }) => <h1>{name}<h1>;
 
             const helloWorldComponent = {
@@ -211,20 +186,23 @@ export default class Presentation extends React.Component {
             };
 
             // <hello-world name="'John'"></hello-world>
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <Heading size={5}>
-            Example 2: Callbacks
-          </Heading>
+          <Heading size={5}>Example 2: Callbacks</Heading>
           <Text>
-            Use a callback function to wrap AngularJS service calls and pass the callback to the React component as a prop.
+            Use a callback function to wrap AngularJS service calls and pass the
+            callback to the React component as a prop.
           </Text>
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const template = \`
               <button ng-click="$ctrl.onClick()">
                 Click Me!
@@ -238,11 +216,15 @@ export default class Presentation extends React.Component {
                 };
               }
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const DoSomething = ({ onClick }) => (
               <button onClick={onClick}>Click Me!</button>
             );
@@ -261,21 +243,25 @@ export default class Presentation extends React.Component {
                 }
               }
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <Heading size={5}>
-            Example 3: String Components
-          </Heading>
+          <Heading size={5}>Example 3: String Components</Heading>
           <Text>
-            Render a string for a React component to implement a cross cutting concern like formatting to lowercase similar to AngularJS's filter.
+            Render a string for a React component to implement a cross cutting
+            concern like formatting to lowercase similar to AngularJS's filter.
           </Text>
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
-            const lowercaseFilter = () => text => text.toLowerCase();
+          <CodePane
+            lang="js"
+            source={`
+            const lowercaseFilter = () =>
+              text => text.toLowerCase();
 
             const helloWorldComponent = {
               template: \`<h1>Hello {{$ctrl.name | lowercase}}</h1>\`,
@@ -283,11 +269,15 @@ export default class Presentation extends React.Component {
                 name: '<'
               }
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const Lowercase = ({ text }) => text.toLowerCase();
             const HelloWorld = ({ name }) => (
               <h1>
@@ -307,20 +297,24 @@ export default class Presentation extends React.Component {
                   );
                 };
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <Heading size={5}>
-            Example 4: Using Fragment
-          </Heading>
+          <Heading size={5}>Example 4: Using Fragment</Heading>
           <Text>
-            To maintain existing markup, we need to be able to support components that have multiple top level elements, which we can do using React Fragments.
+            To maintain existing markup, we need to be able to support
+            components that have multiple top level elements, which we can do
+            using React Fragments.
           </Text>
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const myCardComponent = {
               template: \`
                 <h3>{{$ctrl.header}}</h3>
@@ -331,11 +325,15 @@ export default class Presentation extends React.Component {
                 body: '<'
               }
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const MyCard = ({ header, body }) => (
               <React.Fragment>
                 <h3>{header}</h3>
@@ -356,31 +354,40 @@ export default class Presentation extends React.Component {
                 }
               }
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <Heading size={5}>
-            Example 5: Using Context
-          </Heading>
+          <Heading size={5}>Example 5: Using Context</Heading>
           <Text>
-            One of the common needs is handling cross cutting concerns while being able to interop with the existing services. We need to be able to do this without polluting props to our components. React's Context api allows us to do just this.
+            One of the common needs is handling cross cutting concerns while
+            being able to interop with the existing services. We need to be able
+            to do this without polluting props to our components. React's
+            Context api allows us to do just this.
           </Text>
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const translateFilter =
               translate => name => translate(name);
 
             const helloWorldComponent = {
               template: \`<h1>{{'Hello World' | translate}}</h1>\`
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const TranslateContext = React.createContext(key => key);
 
             const Translate = ({ name }) => (
@@ -392,11 +399,15 @@ export default class Presentation extends React.Component {
             const HelloWorld = () => (
               <h1><Translate name="Hello World" /></h1>
             );
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const helloWorldComponent = {
               controller: (translate) => {
                 this.$onInit = () => {
@@ -409,20 +420,24 @@ export default class Presentation extends React.Component {
                 }
               }
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <Heading size={5}>
-            Example 6: Using Children
-          </Heading>
+          <Heading size={5}>Example 6: Using Children</Heading>
           <Text>
-            We can utilize children to create wrappers that have side effects but don't add extra markup to the DOM similar to AngularJS directives.
+            We can utilize children to create wrappers that have side effects
+            but don't add extra markup to the DOM similar to AngularJS
+            directives.
           </Text>
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const scrollTopDirective = {
               controller: () => {
                 this.$onInit = () => {
@@ -432,11 +447,15 @@ export default class Presentation extends React.Component {
             };
 
             // <div scroll-top>Stuff goes here</div>
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             class ScrollTop extends React.Component {
               componentDidMount() {
                 window.scrollTo(0, 0);
@@ -449,20 +468,23 @@ export default class Presentation extends React.Component {
             // <ScrollTop>
             //   <div>Stuff goes here</div>
             // </ScrollTop>
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <Heading size={5}>
-            Example 7: Composition
-          </Heading>
+          <Heading size={5}>Example 7: Composition</Heading>
           <Text>
-            One of React's greatest strengths is being able to compose together components with flexibility and reusability.
+            One of React's greatest strengths is being able to compose together
+            components with flexibility and reusability.
           </Text>
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const template = \`
             <div class="details-card">
               <div class="details-card__header" ng-transclude="header">
@@ -478,11 +500,15 @@ export default class Presentation extends React.Component {
                 body: '?detailsCardBody'
               }
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             <details-card>
               <details-card-header>
                 Header Text
@@ -493,11 +519,15 @@ export default class Presentation extends React.Component {
                 </p>
               </details-card-body>
             </div>
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const DetailsCard = ({ children }) => {
               const arr = React.Children.toArray(children);
               const header = arr.filter(x =>
@@ -517,11 +547,15 @@ export default class Presentation extends React.Component {
             const DetailsCardBody = ({ children }) => (
               <div className="details-card__body">{children}</div>
             );
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             <DetailsCard>
               <DetailsCardHeader>
                 Header Text
@@ -530,11 +564,15 @@ export default class Presentation extends React.Component {
                 <p>Body Content</p>
               </DetailsCardBody>
             </DetailsCard>
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const DetailsCard = ({ header, body }) => {
               return (
                 <div className="details-card">
@@ -551,20 +589,28 @@ export default class Presentation extends React.Component {
                 </div>
               );
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             <DetailsCard
               header="Header Text"
               body={<p>Body Content</p>}
             />
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             const DetailsCard = ({ header, children }) => {
               return (
                 <div className="details-card">
@@ -581,22 +627,26 @@ export default class Presentation extends React.Component {
                 </div>
               );
             };
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <CodePane lang="js" source={`
+          <CodePane
+            lang="js"
+            source={`
             <DetailsCard
               header="Header Text">
               <p>Body Content</p>
             </DetailsCard>
-          `} style={{ fontSize: 20 }}/>
+          `}
+            style={{ fontSize: 20 }}
+          />
         </Slide>
 
         <Slide>
-          <Heading size={4}>
-            Lessons Learned
-          </Heading>
+          <Heading size={4}>Lessons Learned</Heading>
           <List>
             <ListItem>Context is awesome!</ListItem>
             <ListItem>Decompose to smaller components</ListItem>
@@ -607,11 +657,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading>
-            Thank you!
-          </Heading>
+          <Heading>Thank you!</Heading>
         </Slide>
-
       </Deck>
     );
   }
