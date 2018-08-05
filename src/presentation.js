@@ -52,8 +52,8 @@ export default class Presentation extends React.Component {
           <List>
             <ListItem>AngularJS 1.5 App</ListItem>
             <ListItem>Controllers + Large Templates</ListItem>
-            <ListItem>Two Way Data Bindings</ListItem>
             <ListItem>Scope Inheritance</ListItem>
+            <ListItem>Two Way Data Bindings</ListItem>
             <ListItem>Route Based State Management</ListItem>
             <ListItem>Concatenated JS files with Gulp</ListItem>
           </List>
@@ -85,7 +85,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={4}>But before we introduce React...</Heading>
+          <Heading size={4}>But before we switch frameworks...</Heading>
         </Slide>
 
         <Slide>
@@ -103,7 +103,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size={4}>Components</Heading>
+          <Heading size={4}>AngularJS Components</Heading>
           <List>
             <ListItem>Convert controllers to components</ListItem>
             <ListItem>One way data binding</ListItem>
@@ -132,17 +132,16 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={4}>Strategy</Heading>
           <List>
-            <ListItem>Migrate a component at a time</ListItem>
-            <ListItem>Start with leaf components first</ListItem>
-            <ListItem>Use context for cross cutting concerns</ListItem>
+            <ListItem>Pick manageable units of work</ListItem>
+            <ListItem>Start near the leaf nodes</ListItem>
             <ListItem>Maintain existing DOM structure</ListItem>
             <ListItem>Don't render AngularJS inside React</ListItem>
-            <ListItem>Don't leak AngularJS into components</ListItem>
+            <ListItem>Don't leak AngularJS concerns</ListItem>
           </List>
         </Slide>
 
         <Slide>
-          <Heading size={5}>Example 1: Basic Props</Heading>
+          <Heading size={5}>Example 1: Basic Rendering</Heading>
           <Text>
             Use AngularJS's <Code>$onChanges</Code> hook to render the AngularJS
             component as a React component and pass the bindings as props.
@@ -528,19 +527,11 @@ export default class Presentation extends React.Component {
           <CodePane
             lang="js"
             source={`
-            const DetailsCard = ({ children }) => {
-              const arr = React.Children.toArray(children);
-              const header = arr.filter(x =>
-                x.type.name === "DetailsCardHeader");
-              const body = arr.filter(x =>
-                x.type.name === "DetailsCardBody");
-              return (
-                <div className="details-card">
-                  {header}
-                  {body}
-                </div>
-              );
-            };
+            const DetailsCard = ({ children }) => (
+              <div className="details-card">
+                {children}
+              </div>
+            );
             const DetailsCardHeader = ({ children }) => (
               <div className="details-card__header">{children}</div>
             );
@@ -648,10 +639,11 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={4}>Lessons Learned</Heading>
           <List>
-            <ListItem>Context is awesome!</ListItem>
+            <ListItem>Embrace context for interop</ListItem>
             <ListItem>Decompose to smaller components</ListItem>
-            <ListItem>Write tests as you go</ListItem>
-            <ListItem>Small iterative chunks</ListItem>
+            <ListItem>Address cross cutting concerns early</ListItem>
+            <ListItem>Tests!</ListItem>
+            <ListItem>Small iterative units of work</ListItem>
             <ListItem>Be patient</ListItem>
           </List>
         </Slide>
